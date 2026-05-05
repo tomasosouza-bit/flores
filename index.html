@@ -1,153 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flowers Blossom under beautiful night</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Escolha de Fotos</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; min-height: 100vh; display: flex; justify-content: center; padding: 2rem 1rem; }
+    .container { width: 100%; max-width: 680px; }
+    h2 { font-size: 24px; font-weight: 600; color: #1a1a1a; text-align: center; margin-bottom: 0.4rem; }
+    .subtitle { font-size: 14px; color: #888; text-align: center; margin-bottom: 2rem; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: #fff; border: 1px solid #e5e5e5; border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color 0.2s, transform 0.15s; }
+    .card:hover { border-color: #aaa; transform: translateY(-2px); }
+    .card.active { border: 2px solid #534AB7; }
+    .avatar { width: 100%; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 36px; font-weight: 600; }
+    .av-k { background: #EEEDFE; color: #3C3489; }
+    .av-a { background: #FBEAF0; color: #72243E; }
+    .av-e { background: #E1F5EE; color: #0F6E56; }
+    .card-body { padding: 12px; border-top: 1px solid #e5e5e5; }
+    .card-name { font-size: 15px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; }
+    .card-tag { font-size: 12px; color: #999; }
+    .photo-area { margin-top: 2rem; background: #efefef; border-radius: 12px; min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; transition: all 0.3s; }
+    .photo-placeholder { text-align: center; color: #aaa; font-size: 14px; }
+    .photo-placeholder .icon { font-size: 32px; margin-bottom: 8px; }
+    .photo-display { text-align: center; display: none; }
+    .photo-display img { max-width: 260px; max-height: 320px; border-radius: 12px; object-fit: cover; display: block; margin: 0 auto 12px; }
+    .photo-label { font-size: 15px; font-weight: 600; color: #1a1a1a; }
+    .badge { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 8px; margin-top: 6px; }
+    .badge-k { background: #EEEDFE; color: #3C3489; }
+    .badge-a { background: #FBEAF0; color: #72243E; }
+    .badge-e { background: #E1F5EE; color: #0F6E56; }
+  </style>
 </head>
-<body class="not-loaded">
-    <!-- <div class="night"></div> -->
-    <div class="stars-top"></div>
-    <div class="clouds-top"></div>
-    <div class="moon"></div>
+<body>
 
-    <div class="flowers">
+<div class="container">
+  <h2>Quem você quer ver?</h2>
+  <p class="subtitle">Escolha uma pessoa para revelar a foto</p>
 
-        <div class="flower flower-1">
-            <div class="petal-group petal-group-1">
-                <!-- petals -->
-                <div class="petal petal-top-right"></div>
-                <div class="petal petal-top-left"></div>
-                <div class="petal petal-bottom-right"></div>
-                <div class="petal petal-bottom-left"></div>
+  <div class="grid">
+    <div class="card" id="btn-kaylla" onclick="mostrar('kaylla')">
+      <div class="avatar av-k">K</div>
+      <div class="card-body">
+        <p class="card-name">Kaylla</p>
+        <p class="card-tag">clique para ver</p>
+      </div>
+    </div>
+    <div class="card" id="btn-ana" onclick="mostrar('ana')">
+      <div class="avatar av-a">AC</div>
+      <div class="card-body">
+        <p class="card-name">Ana Clara</p>
+        <p class="card-tag">clique para ver</p>
+      </div>
+    </div>
+    <div class="card" id="btn-erick" onclick="mostrar('erick')">
+      <div class="avatar av-e">E</div>
+      <div class="card-body">
+        <p class="card-name">Erick</p>
+        <p class="card-tag">clique para ver</p>
+      </div>
+    </div>
+  </div>
 
-                <!-- center -->
-                <div class="flower-center"></div>
-                <!-- floating lights  -->
-                <div class="floating-light light-1"></div>
-                <div class="floating-light light-2"></div>
-                <div class="floating-light light-3"></div>
-                <div class="floating-light light-4"></div>
-                <div class="floating-light light-5"></div>
-                <div class="floating-light light-6"></div>
-                <div class="floating-light light-7"></div>
-                <div class="floating-light light-8"></div>
-            </div>
-            <!-- stem nd leaves -->
-            <div class="stem">
-                <div class="stem-leaf stem-right-1"></div>
-                <div class="stem-leaf stem-right-2"></div>
-                <div class="stem-leaf stem-left-1"></div>
-                <div class="stem-leaf stem-left-2"></div>
-                <div class="stem-leaf stem-small-right-1"></div>
-                <div class="stem-leaf stem-small-left-1"></div>
-            </div>
-        </div>
+  <div class="photo-area" id="photo-area">
+    <div class="photo-placeholder" id="placeholder">
+      <div class="icon">👆</div>
+      Selecione alguém acima
+    </div>
+    <div class="photo-display" id="photo-display">
+      <img id="foto" src="" alt="">
+      <p class="photo-label" id="foto-nome"></p>
+      <span class="badge" id="foto-badge"></span>
+    </div>
+  </div>
+</div>
 
-        <div class="flower flower-2">
-            <div class="petal-group petal-group-2">
-                <!-- petals -->
-                <div class="petal petal-top-right"></div>
-                <div class="petal petal-top-left"></div>
-                <div class="petal petal-bottom-right"></div>
-                <div class="petal petal-bottom-left"></div>
+<script>
+  const dados = {
+    kaylla: { src: 'kaylla.jpeg', nome: 'Kaylla',    badge: 'badge-k', btn: 'btn-kaylla' },
+    ana:    { src: 'ana.jpeg',    nome: 'Ana Clara', badge: 'badge-a', btn: 'btn-ana'    },
+    erick:  { src: 'erick.jpeg',  nome: 'Erick',     badge: 'badge-e', btn: 'btn-erick'  },
+  };
 
-                <!-- center -->
-                <div class="flower-center"></div>
-                <!-- floating lights  -->
-                <div class="floating-light light-1"></div>
-                <div class="floating-light light-2"></div>
-                <div class="floating-light light-3"></div>
-                <div class="floating-light light-4"></div>
-                <div class="floating-light light-5"></div>
-                <div class="floating-light light-6"></div>
-                <div class="floating-light light-7"></div>
-                <div class="floating-light light-8"></div>
-            </div>
-            <!-- stem nd leaves -->
-            <div class="stem">
-                <div class="stem-leaf stem-right-1"></div>
-                <div class="stem-leaf stem-right-2"></div>
-                <div class="stem-leaf stem-left-1"></div>
-                <div class="stem-leaf stem-left-2"></div>
-            </div>
-        </div>
+  let atual = null;
 
-        <div class="flower flower-3">
-            <div class="petal-group petal-group-3">
-                <!-- petals -->
-                <div class="petal petal-top-right"></div>
-                <div class="petal petal-top-left"></div>
-                <div class="petal petal-bottom-right"></div>
-                <div class="petal petal-bottom-left"></div>
+  function mostrar(nome) {
+    if (atual === nome) {
+      document.getElementById('placeholder').style.display = 'block';
+      document.getElementById('photo-display').style.display = 'none';
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      atual = null;
+      return;
+    }
+    const d = dados[nome];
+    document.getElementById('foto').src = d.src;
+    document.getElementById('foto-nome').textContent = d.nome;
+    const badge = document.getElementById('foto-badge');
+    badge.className = 'badge ' + d.badge;
+    badge.textContent = d.nome.toLowerCase();
+    document.getElementById('placeholder').style.display = 'none';
+    document.getElementById('photo-display').style.display = 'block';
+    document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+    document.getElementById(d.btn).classList.add('active');
+    atual = nome;
+  }
+</script>
 
-                <!-- center -->
-                <div class="flower-center"></div>
-                <!-- floating lights  -->
-                <div class="floating-light light-1"></div>
-                <div class="floating-light light-2"></div>
-                <div class="floating-light light-3"></div>
-                <div class="floating-light light-4"></div>
-                <div class="floating-light light-5"></div>
-                <div class="floating-light light-6"></div>
-                <div class="floating-light light-7"></div>
-                <div class="floating-light light-8"></div>
-            </div>
-            <!-- stem nd leaves -->
-            <div class="stem">
-                <div class="stem-leaf stem-right-1"></div>
-                <div class="stem-leaf stem-right-2"></div>
-                <div class="stem-leaf stem-left-1"></div>
-                <div class="stem-leaf stem-left-2"></div>
-            </div>
-        </div>
-
-        <!-- Grass Cluster 1 -->
-        <div class="growing-grass">
-            <div class="flower__grass flower__grass--1">
-                <div class="flower__grass--top"></div>
-                <div class="flower__grass--bottom"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--1"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--2"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--3"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--4"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--5"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--6"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--7"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--8"></div>
-                <div class="flower__grass__overlay"></div>
-            </div>
-        </div>
-
-        <!-- Grass Cluster 2 -->
-        <div class="growing-grass">
-            <div class="flower__grass flower__grass--2">
-                <div class="flower__grass--top"></div>
-                <div class="flower__grass--bottom"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--1"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--2"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--3"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--4"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--5"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--6"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--7"></div>
-                <div class="flower__grass__leaf flower__grass__leaf--8"></div>
-                <div class="flower__grass__overlay"></div>
-            </div>
-        </div>
-
-        <!-- long grass group -->
-        <div class="grow-ans" style="--d:1.2s">
-            <div class="flower__g-long">
-                <div class="flower__g-long__top"></div>
-                <div class="flower__g-long__bottom"></div>
-            </div>
-        </div>
-    </div> 
-
-    <div class="ground-fog"></div>
-
-    <script src="script.js"></script>
 </body>
 </html>
